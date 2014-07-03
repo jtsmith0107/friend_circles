@@ -27,10 +27,15 @@ class User < ActiveRecord::Base
   
   has_many :posts, inverse_of: :user
   #posts from circles I own
-  has_many :my_circle_member_posts, through: :circles, source: :post_shares
+  has_many :my_circle_member_posts_shares, through: :circles, source: :post_shares
   #posts from circles I am in
-  has_many :circle_member_posts, through: :friendships, source: :post_shares
+  has_many :circle_member_posts_shares, through: :friendships, source: :post_shares
   
+  has_many :circle_member_posts, 
+  through: :circle_member_posts_shares, 
+  source: :post
+  
+  has_many :my_circle_member_posts, through: 
   # has_many :friend_circles, through: :circle_memberships, source: :circle
  #
  #  has_many :friend_circle_posts, through: :friend_circles, source: :owner_posts
