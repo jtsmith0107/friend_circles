@@ -1,0 +1,35 @@
+<h2><%= @circle.circle_type %></h2>
+<%= link_to "Edit Circle", edit_circle_url(@circle) %>
+  
+<h3>Friends in circle</h3>
+<ul>
+<% @circle.circle_members.each do |friend| %>
+  <li><%= friend.email %></li>
+<% end %>
+</ul>
+
+Add Friends
+<form action = "<%= circle_url(@circle) %>", method = "post" >
+  <input type = "hidden" name = "_method" value = "patch">
+  
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="form_authenticity_token">
+
+  <input type='hidden' name='circle[circle_member_ids][]' value=''>
+
+  <% User.all.each do |user| %>
+    <label>
+      <input type='checkbox' name='circle[circle_member_ids][]'
+        <%= 'checked' if @circle.circle_members.include?(user) %>
+        value='<%= user.id %>'><%= user.email %>
+    </label>
+  <% end %>
+  <input type="submit" value="Add Friend">
+</form>
+
+
+<%= render @circle.shared_posts %>
+
+<%= button_to "Create a Post", new_post_url, method: :get %>

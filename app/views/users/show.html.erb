@@ -1,0 +1,9 @@
+<h2>Circles</h2>
+
+
+<%= render @user.circles %>
+
+
+<%= link_to "Create Circle", new_circle_url, method: :get%><br>
+
+<%= link_to "View My Posts", user_posts_url(@user) %>

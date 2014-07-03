@@ -1,0 +1,9 @@
+<label>Post Title:
+<%= @post.title %>
+</label>
+
+<%= @post.body %><br>
+
+<%= link_to "share post!", new_post_postshare_url(@post) %>
+
+<%= render @post.links %>

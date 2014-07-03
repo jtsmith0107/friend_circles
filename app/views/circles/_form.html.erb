@@ -1,0 +1,24 @@
+<%= render "layouts/errors" %>
+
+<form action='<%= circle.persisted? ? circle_url(circle) : circles_url %>' method='post'>
+  
+  <% if circle.persisted? %>
+    <input type='hidden' name='_method' value='patch'>
+  <% end %>
+  
+  <input 
+  type="hidden"
+  name="authenticity_token"
+  value="form_authenticity_token">
+  
+  <label for="circle_type">Circle Type</label>
+  <input 
+    type="text" 
+    name="circle[circle_type]" 
+    value="<%= circle.circle_type %>" 
+    id="circle_type">
+    
+  <% message = circle.persisted? ? 'Edit Circle' : 'Create Circle' %>
+  <input type="submit" value="<%= message %>">
+  
+</form>

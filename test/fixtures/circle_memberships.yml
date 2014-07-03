@@ -1,0 +1,20 @@
+# == Schema Information
+#
+# Table name: circle_memberships
+#
+#  id         :integer          not null, primary key
+#  friend_id  :integer
+#  circle_id  :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  circle_id: 1
+
+two:
+  user_id: 1
+  circle_id: 1

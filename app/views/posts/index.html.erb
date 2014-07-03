@@ -1,0 +1,5 @@
+<h2>Your Posts!</h2>
+
+<%= render @posts %>
+<br>
+<%= link_to "Return to your Page", user_url(@posts.first.user_id) %>

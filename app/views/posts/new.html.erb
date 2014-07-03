@@ -1,0 +1,76 @@
+<h1>Create Post</h1>
+
+<%= render "layouts/errors" %>
+
+<h1> Share This Post! </h1>
+<%= render "layouts/errors" %>
+  <input
+    type="hidden"
+    name="authenticity_token"
+    value="form_authenticity_token">
+
+  <input type='hidden' name='post[shared_circle_ids][]' value=''>
+
+<form action="<%= posts_url %>" method="post">
+  
+  <% Circle.all.each do |circle| %>
+    <label>
+      <input type='checkbox' name='post[shared_circle_ids][]'
+    <% if @post.post_shares.any?{|ps| circle.post_shares.include?(ps)} %>
+      <%= 'checked' %>
+    <% end  %>
+        value='<%= circle.id %>'><%= circle.circle_type %>
+    </label>
+  <% end %>
+
+  
+
+  <br>
+  <input 
+  type="hidden"
+  name="authenticity_token"
+  value="form_authenticity_token">
+  
+  <label for="post_title">Title </label>
+  <input 
+    type="text" 
+    name="post[title]" 
+    value="<%= @post.title %>" 
+    id="circle_type">
+    <br>
+  <label for="post_body">Body</label>
+  <input 
+    type="text" 
+    name="post[body]" 
+    value="<%= @post.body %>" 
+    id="circle_type">
+  <br>
+  <br>
+  
+  <label>Title
+      <input type="text" name="links[1][title]">
+  </label>
+  <label>Link URL
+    <input type="text" name="links[1][url]">
+  </label>
+  <br>
+  
+  <label>Title
+      <input type="text" name="links[2][title]">
+  </label>
+  <label>Link URL
+    <input type="text" name="links[2][url]">
+  </label>
+  <br>
+  
+  <label>Title
+      <input type="text" name="links[3][title]">
+  </label>
+  <label>Link URL
+    <input type="text" name="links[3][url]">
+  </label>
+  <br>
+  
+  <input type="submit" value="Create Post">
+  
+</form>
